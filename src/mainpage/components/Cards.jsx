@@ -4,18 +4,16 @@ import React from 'react'
 export default function Cards() {
   return (
     <>
-        <div className='flex h-screen justify-center items-center'>
-            <div className='w-[560px] h-[330px]'>
-            <div className='bg-slate-200 h-3/4 rounded-t-[5px]'>
-                <h1 className='font-bold text-[36px] ml-[15px]'>Card Title</h1>
-                <p className='text-[16px] mx-[15px]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+       <div className='w-[560px] h-[330px] border border-zinc-300 rounded-[5px] mx-[10px] my-[20px]'>
+            <div className='bg-[#E7E7E7] p-[30px] h-[80%]'>
+              <h1 className='text-3xl font-bold'>Card title</h1>
+              <p className='my-4 text-justify font-medium'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur nihil possimus harum facere nesciunt tempore nobis illo enim adipisci repudiandae non voluptatem unde aperiam, deserunt odio alias pariatur iusto error numquam dolorum! Quasi id assumenda exercitationem quae enim, tempore amet porro quod, pariatur, nesciunt a rem libero nostrum aliquam dolorum!</p>
             </div>
-                <div className='bg-gray-400 h-1/4 flex justify-end items-center rounded-b-[5px]'>
-                    <button className='bg-yellow-500 text-[20px] rounded-[5px] w-[99px] h-[61px] hover: bg-amber-300'>Edit</button>
-                    <button className='bg-yellow-500 text-[20px] rounded-[5px] w-[99px] h-[61px] mx-[15px]'>Delete</button>
-                </div>
+            <div className='flex bg-zinc-300 justify-end h-[20%] items-center'>
+              <button className='bg-yellow-400 py-2 px-5 rounded-[5px] font-bold hover:bg-yellow-500'>Edit</button>
+              <button className='bg-yellow-400 py-2 px-5 rounded-[5px] font-bold mx-2 hover:bg-yellow-500'>Delete</button>
             </div>
-        </div>
+    </div>
     </>    
     )
 }
