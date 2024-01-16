@@ -1,11 +1,15 @@
 import React from 'react'
 
-export default function CreateCard() {
+export default function CreateCard({openCreateView}) {
   return (
     <div className='flex flex-col justify-center items-center h-screen'>
     <div className='mx-auto bg-slate-100 w-[700px] h-[421] rounded-[13px]'>
       <div className="flex justify-end">
-        <button className='bg-red-700 text-slate-100 w-[20px] h-[20px] rounded-full mt-1 mr-2 text-[15px] flex justify-center items-center'>x</button>
+        <button
+        onClick={()=>{
+          openCreateView(false)
+        }}
+        className='bg-red-700 text-slate-100 w-[20px] h-[20px] rounded-full mt-1 mr-2 text-[15px] flex justify-center items-center'>x</button>
       </div>
       <h1 className='font-bold flex justify-center uppercase text-[30px]'>Create Card</h1>
       <div className="flex flex-col justify-center items-center text-[20px]"> 
@@ -19,7 +23,11 @@ export default function CreateCard() {
         </div>
       </div>
       <div className='flex justify-end text-[20px] font-bold'>
-        <button className='bg-slate-200 w-[124px] h-[61px] rounded-[15px] m-5'>Cancel</button>
+        <button 
+        onClick={()=>{
+          openCreateView(false)
+        }}
+         className='bg-slate-200 w-[124px] h-[61px] rounded-[15px] m-5'>Cancel</button>
         <button className='bg-yellow-400 w-[124px] h-[61px] rounded-[15px] m-5'>Create</button>
       </div>
     </div>
