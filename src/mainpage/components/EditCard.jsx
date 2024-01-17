@@ -1,11 +1,11 @@
 
-export default function EditCard({openEditView}) {
+export default function EditCard({setOpenModal}) {
     return (
       <div className='flex flex-col justify-center items-center h-screen'>
     <div className='mx-auto bg-slate-100 w-[700px] h-[421] rounded-[13px]'>
       <div className="flex justify-end">
         <button onClick={()=>{
-          openEditView(false)
+          setOpenModal("")
         }}
          className='bg-red-700 text-slate-100 w-[20px] h-[20px] rounded-full mt-1 mr-2 text-[15px] flex justify-center items-center'>x</button>
       </div>
@@ -23,8 +23,8 @@ export default function EditCard({openEditView}) {
       <div className='flex justify-end text-[20px] font-bold'>
         <button className='bg-slate-200 w-[124px] h-[61px] rounded-[15px] m-5'
          onClick={()=>{
-          openEditView(false)
-        }}>Cancel</button>
+            setOpenModal("")        
+          }}>Cancel</button>
         <button type="submit" className='bg-yellow-400 w-[124px] h-[61px] rounded-[15px] m-5'>Create</button>
       </div>
     </div>

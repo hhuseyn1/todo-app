@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navigation from './components/Navigation'
 import Card from './components/Cards'
 import { useState } from 'react'
@@ -7,34 +7,48 @@ import DeleteCard from './components/DeleteCard'
 import CreateCard from './components/CreateCard'  
 
 function Mainpage({setAuthorized , mail}) {
-  const [createOpened, openCreateView] = useState(false)
-  const [editOpened, openEditView] = useState(false)
-  const [deleteOpened, openDeleteView] = useState(false)
+  const [cards,setCards] = useState([])
+  const [filteredCards,setFilteredCards] = useState([])
+  const [activeCard,setActiveCard] = useState()
+  const [openModal, setOpenModal] = useState("")
+
+  useEffect(()=>{
+    setFilteredCards(cards.filter((card) => card.author === mail))
+    console.log(filteredCards.length)
+  },[cards])
+
   return (
-    <div className='h-screen'>
+    <div className={`${openModal ? "overflow-hidden" : "" } h-screen`}>
       <Navigation setAuthorized={setAuthorized} mail={mail}/>
       <button onClick={()=>{
-        openCreateView(true)
+        setOpenModal("create")
       }} className='bg-yellow-400 py-3 px-10 font-bold rounded-[8px] hover:bg-yellow-500 ml-[68px] mt-[20px]'>Create card</button>
-      <div className='flex flex-wrap px-[58px]'>
-        <Card openEditView={openEditView} openDeleteView={openDeleteView}/>
-        <Card openEditView={openEditView} openDeleteView={openDeleteView}/>
-        <Card openEditView={openEditView} openDeleteView={openDeleteView}/>
-        <Card openEditView={openEditView} openDeleteView={openDeleteView}/>
+      <div className='w-full grid sm:grid-cols-2 lg:grid-cols-3 px-[58px]'>
+        {filteredCards.length ? 
+          (filteredCards.map((card)=>
+            <Card   
+            setActiveCard={setActiveCard}
+            setOpenModal={setOpenModal}
+            data={card}/>
+            )):(<p className='text-center col-span-3 mt-10'>Cards not found!</p>)
+        }
       </div>
-       {createOpened && (
+       {openModal==="create" && (
         <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-75'>
-          <CreateCard openCreateView={openCreateView} />
+          <CreateCard 
+          mail={mail}
+          setCards={setCards}
+          setOpenModal={setOpenModal} />
         </div>
       )}
-      {editOpened && (
+      {openModal==="edit" && (
         <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-75'>
-          <EditCard openEditView={openEditView} />
+          <EditCard setOpenModal={setOpenModal} />
         </div>
       )}
-      {deleteOpened && (
+      {openModal==="delete" && (
         <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-75'>
-          <DeleteCard openDeleteView={openDeleteView} />
+          <DeleteCard setOpenModal={setOpenModal} />
         </div>
       )}
     </div>

@@ -1,11 +1,11 @@
-export default function DeleteCard({openDeleteView}) {
+export default function DeleteCard({setOpenModal}) {
   return (
     <div className='flex flex-col justify-center items-center h-screen'>
       <div className='mx-auto bg-slate-100 w-[700px] h-[241px] rounded-[13px]'>
         <div className="flex justify-end">
           <button onClick={()=>{
-            openDeleteView(false)
-          }} 
+            setOpenModal("")          
+            }} 
           className='bg-red-700 text-slate-100 w-[30px] h-[30px] rounded-full mt-2 mr-2'>X</button>
         </div>
         <h1 className='font-bold flex justify-center m-2 uppercase text-[30px]'>Delete Card</h1>
@@ -14,7 +14,7 @@ export default function DeleteCard({openDeleteView}) {
         </div>
         <div className='flex justify-center text-[20px]'>
           <button onClick={()=>{
-            openDeleteView(false)
+            setOpenModal("")
           }} 
         className='bg-slate-200 w-[124px] h-[61px] rounded-[15px] m-5'>Close</button>
           <button className='bg-yellow-400 w-[124px] h-[61px] rounded-[15px] m-5'>Delete</button>
