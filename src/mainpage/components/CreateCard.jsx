@@ -6,7 +6,6 @@ export default function CreateCard({mail,setCards,setOpenModal}) {
 
   const handleChange = (e) => {
     const {name,value} = e.target;
-    console.log(e.target.value)
     setFormData((prevForm)=>({
       ...prevForm,
       [name]:value,
@@ -20,7 +19,6 @@ export default function CreateCard({mail,setCards,setOpenModal}) {
     e.preventDefault();
     setCards((prevValue)=>[...prevValue,formData]);
     setOpenModal("")
-    console.log("isledi")
   }
  
   return (
@@ -51,6 +49,9 @@ export default function CreateCard({mail,setCards,setOpenModal}) {
         }}
          className='bg-slate-200 w-[124px] h-[61px] rounded-[15px] m-5'>Cancel</button>
         <button
+          onClick={(e)=>{
+            createCard(e)
+          }}
          className='bg-yellow-400 w-[124px] h-[61px] rounded-[15px] m-5'>Create</button>
       </div>
     </div>

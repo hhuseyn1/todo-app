@@ -26,11 +26,12 @@ function Mainpage({setAuthorized , mail}) {
       <div className='w-full grid sm:grid-cols-2 lg:grid-cols-3 px-[58px]'>
         {filteredCards.length ? 
           (filteredCards.map((card)=>
-            <Card   
-            setActiveCard={setActiveCard}
-            setOpenModal={setOpenModal}
-            data={card}/>
-            )):(<p className='text-center col-span-3 mt-10'>Cards not found!</p>)
+          <Card 
+          key={card.id}  
+          setActiveCard={setActiveCard}
+          setOpenModal={setOpenModal}
+          data={card}/>
+          )):(<p className='text-center col-span-3 mt-10'>Cards not found!</p>)
         }
       </div>
        {openModal==="create" && (
@@ -43,12 +44,12 @@ function Mainpage({setAuthorized , mail}) {
       )}
       {openModal==="edit" && (
         <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-75'>
-          <EditCard setOpenModal={setOpenModal} />
+          <EditCard setOpenModal={setOpenModal} cards={cards} setCards={setCards} activeCard={activeCard} />
         </div>
       )}
       {openModal==="delete" && (
         <div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-75'>
-          <DeleteCard setOpenModal={setOpenModal} />
+          <DeleteCard setOpenModal={setOpenModal} cards={cards} setCards={setCards} activeCard={activeCard} />
         </div>
       )}
     </div>

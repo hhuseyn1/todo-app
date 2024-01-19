@@ -1,5 +1,28 @@
+import React, { useState } from 'react'
 
-export default function EditCard({setOpenModal}) {
+export default function EditCard({setOpenModal,cards,setCards,activeCard}) {
+
+  const [formData, setFormData] = useState({
+    title: activeCard.title,
+    description : activeCard.description
+  })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }))
+  }
+
+  const editCard = (e)=>{
+    e.preventDefault()
+    const editedCards = cards.map((card) =>
+      card === activeCard ? { ...card, ...formData } : card
+    )
+    setCards(editedCards)
+    setOpenModal("")
+  }
     return (
       <div className='flex flex-col justify-center items-center h-screen'>
     <div className='mx-auto bg-slate-100 w-[700px] h-[421] rounded-[13px]'>
@@ -13,11 +36,19 @@ export default function EditCard({setOpenModal}) {
       <div className="flex flex-col justify-center items-center text-[20px]"> 
         <div className="flex flex-col">
           <label className="text-[20px] mb-2">Title</label>
-          <input type="text" required="True" placeholder='Input your title...'  className="w-[560px] h-[60px] rounded-[6px] pl-2"/>
+          <input 
+          name="title"
+          value={formData.title}
+          onChange={(e) => handleChange(e)}
+          type="text" required="True" placeholder='Input your title...'  className="w-[560px] h-[60px] rounded-[6px] pl-2"/>
         </div>
         <div className="flex flex-col">
           <label className="text-[20px] mb-2 mt-[15px]">Description</label>
-          <input type="text" required="True" placeholder='Input your description...' className="w-[560px] h-[60px] rounded-[6px] pl-2"/>
+          <input
+          name="description"
+          value={formData.description}
+           onChange={(e) => handleChange(e)}
+           type="text" required="True" placeholder='Input your description...' className="w-[560px] h-[60px] rounded-[6px] pl-2"/>
         </div>
       </div>
       <div className='flex justify-end text-[20px] font-bold'>
@@ -25,7 +56,9 @@ export default function EditCard({setOpenModal}) {
          onClick={()=>{
             setOpenModal("")        
           }}>Cancel</button>
-        <button type="submit" className='bg-yellow-400 w-[124px] h-[61px] rounded-[15px] m-5'>Create</button>
+        <button 
+        onClick={(e) => editCard(e)}
+        type="submit" className='bg-yellow-400 w-[124px] h-[61px] rounded-[15px] m-5'>Submit</button>
       </div>
     </div>
   </div>
