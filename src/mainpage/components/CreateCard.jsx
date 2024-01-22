@@ -22,27 +22,27 @@ export default function CreateCard({mail,setCards,setOpenModal}) {
   }
  
   return (
-    <form className='flex flex-col justify-center items-center h-screen' onSubmit={(e)=>createCard(e)}>
-    <div className='mx-auto bg-slate-100 w-[700px] h-[421] rounded-[13px]'>
-      <div className="flex justify-end">
+    <form className='bg-white flex flex-col items-center sm:w-[700px] h-screen w-screen sm:h-[350px]  sm:mx-7 justify-center sm:rounded-[13px]' onSubmit={(e)=>createCard(e)}>
+    <div className='w-[100%]'>
+      <div className="w-full">
         <button
         onClick={()=>{
           setOpenModal("")     
          }}
-        className='bg-red-700 text-slate-100 w-[20px] h-[20px] rounded-full mt-1 mr-2 text-[15px] flex justify-center items-center'>x</button>
+        className='bg-red-600 w-3 h-3 rounded-full float-right my-0 mt-5 me-5'></button>
       </div>
-      <h1 className='font-bold flex justify-center uppercase text-[30px]'>Create Card</h1>
+      <h1 className='font-bold flex justify-center uppercase mt-5 text-[30px]'>Create Card</h1>
       <div className="flex flex-col justify-center items-center text-[20px]"> 
         <div className="flex flex-col">
           <label className="text-[20px] mb-2">Title</label>
-          <input type="text" name='title' placeholder='Input your title...' required="True" onChange={(e)=>handleChange(e)} className="w-[560px] h-[60px] rounded-[6px] pl-2"/>
+          <input type="text" name='title' placeholder='Input your title...' required="True" onChange={(e)=>handleChange(e)} className="w-screnn sm:w-[560px] h-[60px] rounded-[6px] pl-2"/>
         </div>
         <div className="flex flex-col">
           <label className="text-[20px] mb-2 mt-[15px]">Description</label>
-          <input type="text" name='description' placeholder='Input your description...' required="True" onChange={(e)=>handleChange(e)} className="w-[560px] h-[60px] rounded-[6px] pl-2" />
+          <input type="text" name='description' placeholder='Input your description...' required="True" onChange={(e)=>handleChange(e)} className="w-screnn sm:w-[560px] h-[60px] rounded-[6px] pl-2" />
         </div>
       </div>
-      <div className='flex justify-end text-[20px] font-bold'>
+      <div className='flex justify-center sm:justify-end text-[20px] font-bold'>
         <button 
         onClick={()=>{
           setOpenModal("")
