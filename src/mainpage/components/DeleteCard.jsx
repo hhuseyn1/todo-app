@@ -1,35 +1,44 @@
 import React from 'react'
 
-export default function DeleteCard({setOpenModal,cards,setCards,activeCard}) {
-
-  const deleteCard = () => {
-    setCards(cards.filter((card) => card!== activeCard));
-    setOpenModal("")
+function DeleteCard({dispatch,  id }) {
+  const deleteCard= async (id)=>{
+    try {
+      const response  = await fetch(`http://localhost:3000/cards/${id}`,{
+        method: "DELETE"
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
+  const handleDelete = (e)=>{
+    e.preventDefault()
+    deleteCard(id)
+    dispatch({ type: "" })
+  }
   return (
-    <div className='flex flex-col justify-center items-center h-screen'>
-      <div className='mx-auto bg-slate-100 w-[700px] h-[241px] rounded-[13px]'>
-        <div className="flex justify-end">
-          <button onClick={()=>{
-            setOpenModal("")          
-            }} 
-          className='bg-red-700 text-slate-100 w-[30px] h-[30px] rounded-full mt-2 mr-2'>X</button>
-        </div>
-        <h1 className='font-bold flex justify-center m-2 uppercase text-[30px]'>Delete Card</h1>
-        <div className="flex justify-center">
-          <p className="text-[20px]">Are you sure you want to delete card "{activeCard.title}" ?</p>
-        </div>
-        <div className='flex justify-center text-[20px]'>
-          <button onClick={()=>{
-            setOpenModal("")
-          }} 
-        className='bg-slate-200 w-[124px] h-[61px] rounded-[15px] m-5'>Close</button>
-          <button
-          onClick={() => deleteCard()}
-           className='bg-yellow-400 w-[124px] h-[61px] rounded-[15px] m-5'>Delete</button>
-        </div>
-      </div>
+    <form action="" className='flex flex-col items-center sm:w-[700px] w-screen sm:h-[250px] h-screen justify-center rounded-none sm:rounded-[13px] bg-white'>
+    <div className='w-[100%]'>
+        <button className='bg-red-600 p-2 rounded-full float-right my-0 mx-5' 
+        onClick={()=>{
+          dispatch({ type: '' });
+          }}></button>
     </div>
-  );
+      <h1 className='text-3xl font-bold mb-5'>DELETE CARD</h1>
+      <label htmlFor="" className='text-zinc-600'>Are you sure you want to delete card {data.name}?</label>
+        <div className='flex justify-center h-[20%] items-center mt-[20px]'>
+          <button className='border border-zinc-300 py-2 px-5 rounded-[5px] font-bold hover:bg-[#DFDFDF]'
+          onClick={()=>{
+            dispatch({ type: '' });
+          }}
+          >Close</button>
+          <button className='bg-yellow-400 py-2 px-5 rounded-[5px] font-bold mx-2 hover:bg-[#F6AB1A]'
+          onClick={(e) => handleDelete(e)}
+          >Delete</button>
+        </div>
+      
+    </form>
+  )
 }
+
+export default DeleteCard
