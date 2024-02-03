@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import Navigation from './components/Navigation'
 import Card from './components/Cards'
-import { useState } from 'react'
+import MyContext from '../ContextWrapper'
+import { useState , useContext , useReducer } from 'react'
 import EditCard from './components/EditCard'
 import DeleteCard from './components/DeleteCard'
 import CreateCard from './components/CreateCard'  
@@ -28,7 +29,6 @@ export default function Mainpage() {
   
   useEffect(()=>{
     setFilteredCards(cards.filter((card)=>card.author === mail))
-    
   }, [cards])
 
   useEffect(() => {
@@ -43,17 +43,19 @@ export default function Mainpage() {
         console.error(error);
       }
     };
-    getData();
+    getData()
   }, [cards])
 
   return (
     <div className={`${state.type?"overflow-hidden":null} h-screen `}>
       <Navigation/>
-      <button className='bg-yellow-400 py-3 px-10 font-bold rounded-[8px] hover:bg-yellow-500 ml-[68px] mt-[20px] '
-      onClick={(e)=>{
-        dispatch({ type: 'create' });
-      }}
-      >Create card</button>
+      <div class="flex justify-center items-center sm:justify-start sm:items-start">
+        <button className='bg-yellow-400 py-3 px-10 font-bold rounded-[8px] hover:bg-yellow-500 sm:ml-1 mt-[20px]'
+        onClick={(e)=>{
+          dispatch({ type: 'create' });
+        }}
+        >Create card</button>
+      </div>
        
       <div className='w-full grid sm:grid-cols-2 lg:grid-cols-3 px-5 lg:px-[58px]'>
         {

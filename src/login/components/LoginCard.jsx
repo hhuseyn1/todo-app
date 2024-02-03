@@ -1,4 +1,4 @@
-import React, { useContext , useState} from 'react'
+import React, { useContext , useRef ,useState , useEffect} from 'react'
 import MyContext from '../../ContextWrapper' 
 import { useNavigate } from 'react-router-dom';
 
@@ -7,6 +7,15 @@ export default function LoginCard() {
   const navigate = useNavigate()
   const [isValid, setIsValid] = useState(true);
   const {setEmail,mail, setAuthorized} = useContext(MyContext)
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+    setIsValid(inputRef.current.value.includes("@"));
+  }, []);
+
+
   return (
     <>
         <div className='flex h-screen justify-center items-center'>
@@ -14,6 +23,7 @@ export default function LoginCard() {
                 <h1 className='text-3xl font-bold mb-5'>LOGIN FORM</h1>
                 <label>Input your email:</label>
                 <input
+                  ref={inputRef}
                  onChange={(e)=>{
                   setEmail(e.target.value)
                   setIsValid(e.target.checkValidity())
