@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
+import { React, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function CreateCard({dispatch,setCards, mail}) {
   const [formData, setFormData]=useState({})
 
-  const handleChange = (e)=>{
-    const {name, value} = e.target;
-    setFormData((prevForm)=>({
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prevForm) => ({
       ...prevForm,
-      [name]:value,
-      author:mail,
+      [name]: value,
+      author: mail,
+      id: uuidv4(),
     }));
-  }
+  };
 
   // const fs = require('fs');
   // const path = require('C:\\Users\\husey\\Desktop\\todo-app\\src\\log');
@@ -40,7 +43,7 @@ function CreateCard({dispatch,setCards, mail}) {
   
 
   return (
-    <form  className='flex flex-col items-center sm:w-[700px] w-screen sm:h-[350px] h-screen justify-center rounded-none sm:rounded-[13px] bg-white'>
+    <form onSubmit={createCard}  className='flex flex-col items-center sm:w-[700px] w-screen sm:h-[350px] h-screen justify-center rounded-none sm:rounded-[13px] bg-white'>
         <div className='w-[100%]'>
             <button className='bg-red-600 rounded-full float-right my-0 mx-5 h-7 w-7 text-white' 
             onClick={()=>{

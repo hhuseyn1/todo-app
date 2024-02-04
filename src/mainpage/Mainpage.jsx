@@ -49,7 +49,7 @@ export default function Mainpage() {
   return (
     <div className={`${state.type?"overflow-hidden":null} h-screen `}>
       <Navigation/>
-      <div class="flex justify-center items-center sm:justify-start sm:items-start">
+      <div className="flex justify-center items-center sm:justify-start sm:items-start">
         <button className='bg-yellow-400 py-3 px-10 font-bold rounded-[8px] hover:bg-yellow-500 sm:ml-1 mt-[20px]'
         onClick={(e)=>{
           dispatch({ type: 'create' });
@@ -98,7 +98,6 @@ export default function Mainpage() {
             setCards={setCards}/>
         </div>
       )}
-      
       
     </div>
   )
